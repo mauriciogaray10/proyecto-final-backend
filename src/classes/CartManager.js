@@ -1,5 +1,5 @@
 import fs from 'fs';
-import __dirname from './utils.js';
+import __dirname from '../utils';
 import { v4 as uuidV4 } from "uuid";
 
 let path = __dirname + '/carrito.json';
@@ -45,12 +45,6 @@ class CartManager {
          let {id, products} = await this.getProductsById(idCart);
          let product = products.filter(product.id === idProduct);
          product.cant += cant;
-         
-
-
-
-
-
 
 
     }
@@ -73,3 +67,4 @@ class CartManager {
 
 
 }
+export default CartManager;

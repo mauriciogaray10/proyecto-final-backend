@@ -1,5 +1,5 @@
 import fs from 'fs';
-import __dirname from './utils.js';
+import __dirname from '../utils.js';
 import { v4 as uuidV4 } from "uuid";
 
 
@@ -96,3 +96,5 @@ class ProductManager {
      }
 
     }
+
+    export default ProductManager;
