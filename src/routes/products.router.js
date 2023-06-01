@@ -38,3 +38,6 @@ router.get('/:id', async ( res, req)=> {
     return res.send('Product deleted'); 
 })
 
+
+export default router();
+
