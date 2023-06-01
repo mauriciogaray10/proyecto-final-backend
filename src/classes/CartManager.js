@@ -1,8 +1,7 @@
 import fs from 'fs';
-import __dirname from '../utils';
 import { v4 as uuidV4 } from "uuid";
 
-let path = __dirname + '/carrito.json';
+let path = './files/carrito.json';
 
 
 class CartManager {
@@ -41,29 +40,16 @@ class CartManager {
 
      }
 
-     addNewProduct = async (idCart, idProduct, cant) => {
+     addNewProduct = async (idCart, idProduct) => {
          let {id, products} = await this.getProductsById(idCart);
          let product = products.filter(product.id === idProduct);
-         product.cant += cant;
-
-
+         product.cant += 1;
+         let producto = {
+            ...product, cant
+         }
+         return producto
     }
   
-    
-   
-  
-    
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

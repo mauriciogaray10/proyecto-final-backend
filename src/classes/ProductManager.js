@@ -38,7 +38,6 @@ class ProductManager {
         if (title === null || description === null || price === null || thumbnail === null || stock === null) {
             return 'se debe rellenar todos los campos';
         }
-        ProductManager.id++
         const product = {
             title,
             description, 
@@ -98,3 +97,4 @@ class ProductManager {
     }
 
     export default ProductManager;
+

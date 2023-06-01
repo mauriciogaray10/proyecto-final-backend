@@ -7,7 +7,7 @@ const list = new productManager();
 
 router.get('/', async (res, req) => {
     let lista = await list.getProducts();
-    return res.send(lista);
+    res.send(list);
 })
 
 router.get('/:id', async ( res, req)=> {
@@ -32,12 +32,12 @@ router.put('/', (res, req)=>{
     return res.send('Product modified');
     
 })
-router.get('/:id', async ( res, req)=> {
+router.get('/:id',  ( res, req)=> {
     let id = req.params.id;
-    const productById = await list.deleteProductbyId(id);
+    const productById =  list.deleteProductbyId(id);
     return res.send('Product deleted'); 
 })
 
 
-export default router();
+export default router;
 
