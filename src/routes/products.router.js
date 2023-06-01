@@ -1,43 +1,24 @@
-import { Router} from "express";
-import productManager from '../classes/ProductManager.js'
+import { Router } from "express";
+import productsManager from '../classes/productsManager.class.js'
 
 const router = Router();
 
-const list = new productManager();
+const Products = new productsManager();
 
-router.get('/', async (res, req) => {
-    let lista = await list.getProducts();
-    res.send(list);
+router.get('/', async (req, res)=>{
+    let productList = await Products.consultarProductos();
+    return res.send({productList});
 })
 
-router.get('/:id', async ( res, req)=> {
-    let id = req.params.id;
-    const productById = await list.getProductById(id);
-    return res.send(productById); 
-})
-
-router.post('/', async (res, req) => {
-    let product = req.body;
-    if(!product){
-        return res.send('It is a empty product');
-    }else{
-        await list.addProduct(product);
-        return res.send('product added');
-    }
-})
-
-router.put('/', (res, req)=>{
-    let product = req.body;
-    list.updateProduct(product);
-    return res.send('Product modified');
+router.get('/:pid', async (req, res) => {
+    let pid = req.params.pid;
+    let product = await Products.consultarProductoPorId(pid);
     
+    res.send (product)
 })
-router.get('/:id',  ( res, req)=> {
-    let id = req.params.id;
-    const productById =  list.deleteProductbyId(id);
-    return res.send('Product deleted'); 
-})
+
+
+
 
 
 export default router;
-

@@ -1,0 +1,62 @@
+[
+	{
+		"name": "pan",
+		"price": "10",
+		"stock": "10",
+		"status": "true",
+		"description": "lorem ipsum",
+		"thumbnails": [
+			"imagen.com/asd",
+			"imagen.com/imagen2.png"
+		],
+		"id": "2732a61c-6cf1-4ce8-bb7c-20aa96fb852a"
+	},
+	{
+		"name": "Gaseosa",
+		"price": "30",
+		"stock": "10",
+		"status": "true",
+		"description": "lorem ipsum",
+		"thumbnails": [
+			"imagen.com/gaseosa1.jpg",
+			"imagen.com/gaseosa2.png"
+		],
+		"id": "93d5173c-6834-482b-9807-79ddaf752c28"
+	},
+	{
+		"name": "Agua",
+		"price": "30",
+		"stock": "10",
+		"status": "true",
+		"description": "lorem ipsum",
+		"thumbnails": [
+			"imagen.com/agua1.jpg",
+			"imagen.com/agua2.png"
+		],
+		"id": "82f33bdc-c122-48e0-834f-d7deda11018f"
+	},
+	{
+		"name": "Agua",
+		"price": 30,
+		"stock": 10,
+		"status": "true",
+		"description": "lorem ipsum",
+		"thumbnails": [
+			"imagen.com/agua1.jpg",
+			"imagen.com/agua2.png"
+		],
+		"id": "bd6ce13e-be87-401e-a2bd-97a6ab415ca8"
+	},
+	{
+		"name": "Agua",
+		"price": 30,
+		"stock": 10,
+		"status": true,
+		"description": "lorem ipsum",
+		"thumbnails": [
+			"imagen.com/agua1.jpg",
+			"imagen.com/agua2.png"
+		],
+		"id": "a0cda76f-41d6-4074-8885-1a9dedda3957"
+	}
+]
