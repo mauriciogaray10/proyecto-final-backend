@@ -1,5 +1,6 @@
 import fs from 'fs';
 import __dirname from './utils.js';
+import { v4 as uuidV4 } from "uuid";
 
 
 class ProductManager {
@@ -32,7 +33,7 @@ class ProductManager {
 
 
 
-    addProduct = async ({title, description, price, thumbnail, code, stock}) => {
+    addProduct = async ({title, description, price, thumbnail, code, cant}) => {
         
         if (title === null || description === null || price === null || thumbnail === null || stock === null) {
             return 'se debe rellenar todos los campos';
@@ -44,8 +45,8 @@ class ProductManager {
             price,
             thumbnail,
             code,
-            stock,
-            id : ProductManager.id
+            cant,
+            id : uuidV4()
         }
         this.products.push(product)
 
