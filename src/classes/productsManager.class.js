@@ -1,4 +1,3 @@
-import { log } from "console";
 import fs from "fs";
 import { v4 as uuidV4 } from "uuid";
 
@@ -32,4 +31,32 @@ export default class ManagerProducts {
 
     return producto ? producto : "producto no encontrado";
   };
+
+  actualizarProducto = async ({id, ...product}) => {
+
+    await this.deleteProductbyId(id);
+
+    let productOld = await this.consultarProductos();
+
+    let modifiedProduct = [{id, ...product}, ...productOld];
+    await fs.promises.writeFile(path, JSON.stringify(modifiedProduct, '\t') )
+   return  modifiedProduct;
+ }
+
+ deleteProductbyId = async (id) => {
+  let response = await this.consultarProductos();
+
+  let productFiltered = response.filter(products => products.id !== id);
+
+  console.log(productFiltered);
+  
+  await fs.promises.writeFile(path, JSON.stringify(productFiltered, '\t') )
+  return productFiltered;
+}
+
+
+
+
+
+
 }
