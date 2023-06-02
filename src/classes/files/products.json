@@ -58,5 +58,17 @@
 			"imagen.com/agua2.png"
 		],
 		"id": "a0cda76f-41d6-4074-8885-1a9dedda3957"
+	},
+	{
+		"name": "Avena",
+		"price": 300,
+		"stock": 1000,
+		"status": true,
+		"description": "Premium",
+		"thumbnails": [
+			"imagen.com",
+			"imagen.com"
+		],
+		"id": "27d85703-e7be-4238-afb3-3f0456541c8f"
 	}
 ]

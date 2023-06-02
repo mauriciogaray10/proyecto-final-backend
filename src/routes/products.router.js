@@ -17,6 +17,12 @@ router.get('/:pid', async (req, res) => {
     res.send (product)
 });
 
+router.post('/', async (req, res)=>{
+    let newProduct = req.body;
+    await Products.crearProducto(newProduct);
+   return  res.status(200).send('Product created');
+
+})
 
 
 
