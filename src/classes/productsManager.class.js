@@ -44,7 +44,7 @@ export default class ManagerProducts {
  deleteProductbyId = async (id) => {
   let response = await this.consultarProductos();
 
-  let productFiltered = response.filter(product => product.id !== id);
+  let productFiltered = response.filter(products => products.id !== id);
   await fs.promises.writeFile(path, JSON.stringify(productFiltered, '\t') )
   return productFiltered;
 }

@@ -35,6 +35,12 @@ router.put('/:pid', async (req, res)=> {
 
 })
 
+router.delete('/:pid', async(req, res)=>{
+    let pid = req.params.pid;
+    let message = await Products.deleteProductbyId(pid);
+    res.send(message);
+})
+
 
 
 
