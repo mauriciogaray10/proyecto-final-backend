@@ -5,7 +5,7 @@ const router = Router();
 const Carts = new ManagerCarts();
 
 router.post('/', async(req, res)=>{
-    let message = await Carts.crearCart();
+    let message = await Carts.crearCarrito();
     res.send(message);
 });
 
