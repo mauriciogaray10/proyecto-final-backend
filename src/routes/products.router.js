@@ -22,7 +22,19 @@ router.post('/', async (req, res)=>{
     await Products.crearProducto(newProduct);
    return  res.status(200).send('Product created');
 
+});
+
+router.put('/:pid', async (req, res)=> {
+    let pid = req.params.pid;
+    let newProduct = req.body;
+    let oldProduct = await Products.consultarProductoPorId(pid);
+    newProduct.id = await oldProduct.id
+    await Products.actualizarProducto(newProduct);
+    
+    res.status(200).send('Product has been updated')
+
 })
+
 
 
 

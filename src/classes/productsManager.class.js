@@ -32,13 +32,11 @@ export default class ManagerProducts {
     return producto ? producto : "producto no encontrado";
   };
 
-  actualizarProducto = async ({id, ...product}) => {
+  actualizarProducto = async ({name, price, stock, status, description, thumbnails, id}) => {
 
-    await this.deleteProductbyId(id);
+     let productOld= await this.deleteProductbyId(id);
 
-    let productOld = await this.consultarProductos();
-
-    let modifiedProduct = [{id, ...product}, ...productOld];
+    let modifiedProduct = [{name, price, stock, status, description, thumbnails, id}, ...productOld];
     await fs.promises.writeFile(path, JSON.stringify(modifiedProduct, '\t') )
    return  modifiedProduct;
  }
@@ -46,10 +44,7 @@ export default class ManagerProducts {
  deleteProductbyId = async (id) => {
   let response = await this.consultarProductos();
 
-  let productFiltered = response.filter(products => products.id !== id);
-
-  console.log(productFiltered);
-  
+  let productFiltered = response.filter(product => product.id !== id);
   await fs.promises.writeFile(path, JSON.stringify(productFiltered, '\t') )
   return productFiltered;
 }
