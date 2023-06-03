@@ -43,6 +43,11 @@
 	},
 	{
 		"id": "7ebb4f60-a3f0-4cf4-919b-02b0a5eb85ff",
-		"products": []
+		"products": [
+			{
+				"id": "4fa2fe31-4a86-4dd9-b6e8-56ca98c2cf15",
+				"quantity": 4
+			}
+		]
 	}
 ]

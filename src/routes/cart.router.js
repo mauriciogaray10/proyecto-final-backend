@@ -13,6 +13,19 @@ router.get('/:cid', async (req, res)=>{
     let cid = req.params.cid;
     let message = await Carts.consultarCartPorId(cid);
     res.send(message);
+});
+
+router.post('/:cid/product/:pid', async(req, res)=>{
+        let cid = req.params.cid;
+    
+        let  pid = req.params.pid;
+
+        await Carts.agregarProductoEnCarrito(cid, pid);
+
+       return res.send('The product has been added');
+
+
+
 })
 
 

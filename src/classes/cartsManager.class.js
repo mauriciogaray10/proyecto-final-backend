@@ -40,7 +40,35 @@ export default class ManagerCarts {
     
         return cart ? cart : "carrito no encontrado";
       };
+
+      agregarProductoEnCarrito = async (idCart, idProduct) => {
+        const cart = await this.consultarCartPorId(idCart);
       
+        const index = cart.products.findIndex((product) => {
+          return product.id == idProduct;
+        });
+      
+        if (index == -1) {
+          cart.products.push({ id: idProduct, quantity: 1 });
+        } else {
+          cart.products[index].quantity++;
+        }
+      
+        const carts = await this.consultarCarrito()
+        const cartIndex = carts.findIndex((cartIterator)=>{
+            return cartIterator.id == cart.id
+        })
+      
+        carts[cartIndex] = cart
+      
+        return await fs.promises.writeFile(path, JSON.stringify(carts, null,"\t" ))
+      
+      };
+      
+
+   
+
+
 
 
 

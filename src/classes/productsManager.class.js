@@ -47,7 +47,7 @@ export default class ManagerProducts {
   let productFiltered = response.filter(products => products.id !== id);
   await fs.promises.writeFile(path, JSON.stringify(productFiltered, '\t') )
   return productFiltered;
-}
+};
 
 
 
