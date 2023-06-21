@@ -12,19 +12,20 @@ import routerRealTime from './routes/realTime.router.js'
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+//socket
 const httpServer = app.listen(8080, ()=>{
     console.log('server is listening...');
 });
 const socketServer = new Server(httpServer); 
 
-
+//handlebars
 app.engine('handlebars', handlebars.engine());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
 app.use(express.static(__dirname + '/public'));
 
 
-
+//rutas
 app.use('/products/', routerProducts);
 app.use('/carts/', routerCarts);
 app.use('/realTimeProducts', routerRealTime)
