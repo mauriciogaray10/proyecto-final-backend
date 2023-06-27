@@ -8,6 +8,8 @@ import routerRealTime from './routes/realTime.router.js'
 
 
 
+
+
 //express
 const app = express();
 app.use(express.json());
