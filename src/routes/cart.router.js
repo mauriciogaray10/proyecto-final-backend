@@ -4,6 +4,11 @@ import ManagerCarts from "../dao/mongoDB/cartsManager.class.js";
 const router = Router();
 const Carts = new ManagerCarts();
 
+router.get('/', async (req, res)=>{
+    let message = await Carts.getAllCart()
+    res.send(message);
+});
+
 router.post('/', async(req, res)=>{
     let message = await Carts.crearCarrito();
     res.send(message);
@@ -16,13 +21,13 @@ router.get('/:cid', async (req, res)=>{
 });
 
 router.post('/:cid/product/:pid', async(req, res)=>{
-        let cid = req.params.cid;
+        let idCart = req.params.cid;
     
-        let  pid = req.params.pid;
+        let  idProduct = req.params.pid;
 
-        await Carts.agregarProductoEnCarrito(cid, pid);
+        await Carts.agregarProductoEnCarrito(idCart, idProduct);
 
-       return res.send('The product has been added');
+       return res.send({status: "success"});
 
 
 

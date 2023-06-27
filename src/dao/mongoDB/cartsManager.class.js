@@ -1,69 +1,41 @@
-import fs from "fs";
-import { v4 as uuidV4 } from "uuid";
-
-const path = "src/classes/files/carts.json";
+import mongoose from "mongoose";
+import cartModel from "./models/carts.model.js";
+import ManagerProducts from "./productsManager.class.js";
 
 export default class ManagerCarts {
-
-    constructor() {
-        this.products = [];
-    }
+  connection = mongoose.connect('mongodb+srv://garaycarlos:hola123@ecommercefinalproyect.ui8vrwv.mongodb.net/');
+  ManagerProduct = new ManagerProducts();
 
     consultarCarrito = async () => {
-        if (fs.existsSync(path)) {
-          const data = await fs.promises.readFile(path, "utf-8");
-          const carritos = JSON.parse(data);
-          return carritos;
-        } else {
-         console.log('THERE ARE NOT CARTS');
-        }
+      let response = await cartModel.find().lean();
+      return response;
       };
 
 
     crearCarrito = async () => {
-        const cart = await this.consultarCarrito();
-        let newCart = {
-            id: uuidV4(),
-            products: []
-        }
-        cart.push(newCart);
-        await fs.promises.writeFile(path, JSON.stringify(cart, null, "\t"));
-        return 'Cart has been created';
+      let result = await cartModel.create({ products: [] });
+      return result
       };
 
-      consultarCartPorId = async (id) => {
-        const carts = await this.consultarCarrito();
+    consultarCartPorId = async (id) => {
+      let response = await cartModel.findOne({ _id: id}).lean();
+      return response;
     
-        const cart = carts.find((carro) => {
-          return carro.id == id;
-        });
-    
-        return cart ? cart : "carrito no encontrado";
       };
 
-      agregarProductoEnCarrito = async (idCart, idProduct) => {
-        const cart = await this.consultarCartPorId(idCart);
+    agregarProductoEnCarrito = async (idCart, idProduct) => {
+      let product = await this.ManagerProduct.consultarProductoPorId(idProduct);
+      let cart = await this.consultarCartPorId(idCart)
+      cart.products.push({ product: product })
+      await cartModel.updateOne({"_id": idCart}, {$set: cart})
       
-        const index = cart.products.findIndex((product) => {
-          return product.id == idProduct;
-        });
-      
-        if (index == -1) {
-          cart.products.push({ id: idProduct, quantity: 1 });
-        } else {
-          cart.products[index].quantity++;
-        }
-      
-        const carts = await this.consultarCarrito()
-        const cartIndex = carts.findIndex((cartIterator)=>{
-            return cartIterator.id == cart.id
-        })
-      
-        carts[cartIndex] = cart
-      
-        return await fs.promises.writeFile(path, JSON.stringify(carts, null,"\t" ))
-      
+      return;
       };
+
+    getAllCart = async () => {
+      let result = await cartModel.find().populate('products.product');
+      return result;
+    };
       
 
    
