@@ -1,10 +1,17 @@
+<div>
+  <h1>
+    Bienvienidos al super Coderhouse!
+  </h1>
+</div>
+
 {{#each productList}}
 <div>
     <ul>
-      <li>{{this.title}}</li>
-      <li>{{this.price}}</li>
+      <li><h3>{{this.title}}</h3></li>
+      <li><h4>$ {{this.price}}._</h4></li>
       <li>{{this.description}}</li>
     </ul>
+    </br>
 </div>
 {{/each}}
 </div>

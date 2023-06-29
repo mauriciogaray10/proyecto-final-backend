@@ -20,7 +20,7 @@ const httpServer = app.listen(8080, ()=>{
 const socketServer = new Server(httpServer); 
 
 
-handlebars
+//handlebars
 app.engine('handlebars', handlebars.engine());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');

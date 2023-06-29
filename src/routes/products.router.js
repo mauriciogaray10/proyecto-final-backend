@@ -1,13 +1,19 @@
 import { Router } from "express";
 import productsManager from '../dao/mongoDB/productsManager.class.js'
+import __dirname from "../utils.js";
 
 const router = Router();
 
 const Products = new productsManager();
 
 router.get('/', async (req, res)=>{
-    let productList = await Products.consultarProductos();
-    res.render('index', {productList})
+    let limit = Number(req.query.limit);
+    let page = Number(req.query.page)
+    let sort = Number(req.query.sort)
+    let filtro = req.query.filtro;
+    let filtroVal = req.query.filtroVal;
+    let productList = await Products.consultarProductos(limit, page, sort, filtro, filtroVal);
+    res.send({productList})//res.render('index', {productList})
 });
 
 router.get('/:pid', async (req, res) => {

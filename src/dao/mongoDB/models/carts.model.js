@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const Collection = 'carts';
 
 const cartSchema = new mongoose.Schema({
@@ -16,6 +17,7 @@ const cartSchema = new mongoose.Schema({
 
 
 });
+
 
 
 const cartModel = mongoose.model(Collection, cartSchema);

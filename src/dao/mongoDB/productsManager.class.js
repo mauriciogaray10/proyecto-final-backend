@@ -7,9 +7,16 @@ export default class ManagerProducts {
    connection = mongoose.connect('mongodb+srv://garaycarlos:hola123@ecommercefinalproyect.ui8vrwv.mongodb.net/')
  
  
-  consultarProductos = async () => {
+  consultarProductos = async (limit=10, page=1, sort=0, filtro=null, filtroVal=null ) => {
+    let whereOptions = {};
+    if(filtro != '' && filtroVal !=''){
+       whereOptions = { [filtro]: filtroVal };
+    }
 
-    let response = await productsModel.find().lean();
+    let response = await productsModel.paginate(whereOptions, {limit: limit, 
+      page: page, 
+      sort: {price: sort}
+    })
     return response;
   };
 
