@@ -13,7 +13,8 @@ router.get('/', async (req, res)=>{
     let filtro = req.query.filtro;
     let filtroVal = req.query.filtroVal;
     let productList = await Products.consultarProductos(limit, page, sort, filtro, filtroVal);
-    res.send({productList})//res.render('index', {productList})
+    res.send(productList)
+    //res.render('index', {productList})
 });
 
 router.get('/:pid', async (req, res) => {

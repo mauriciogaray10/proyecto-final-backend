@@ -18,8 +18,11 @@ export default class ManagerCarts {
       };
 
     consultarCartPorId = async (id) => {
-      let response = await cartModel.findOne({ _id: id}).lean();
-      return response;
+      const result = await cartModel
+      .findOne({ _id: id })
+      .populate("products.product");
+      console.log(result);
+      return result;
     
       };
 
@@ -32,10 +35,29 @@ export default class ManagerCarts {
       return;
       };
 
+      deleteProductFromCart = async (cid, pid) => {
+        const cart = await this.consultarCartPorId(cid);
+        cart.products.pull(pid);
+        await cart.save();
+        return;
+        };
+      
+      deleteAllProducts = async (idCart) => {
+        await cartModel.updateOne({"_id": idCart}, {$set: {products:[]}})
+
+      }
+
+
+
+
+
+
+
     getAllCart = async () => {
       let result = await cartModel.find().populate('products.product');
       return result;
     };
+    
       
 
    
