@@ -42,8 +42,10 @@ export default class ManagerCarts {
         return;
         };
       
-      deleteAllProducts = async (idCart) => {
-        await cartModel.updateOne({"_id": idCart}, {$set: {products:[]}})
+      deleteAllProducts = async (cid) => {
+        let cart = this.consultarCartPorId(cid);
+        cart.products = [];
+        await cart.save();
 
       }
 

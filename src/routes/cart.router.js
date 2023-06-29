@@ -47,9 +47,9 @@ router.delete('/:cid/products/:pid', async(req, res)=>{
 })
 
 router.delete('/:cid', async(req, res)=>{
-    let idCart = req.params.cid;
+    let cid = req.params.cid;
 
-    await Carts.deleteAllProducts(idCart);
+    await Carts.deleteAllProducts(cid);
 
    return res.send({status: "The products Has been deleted"});
 
